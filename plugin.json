@@ -1,0 +1,12 @@
+{
+  "ID":"8130B8D3A1014C2CA9D6A5D33C1F78A8",
+  "ActionKeyword":"/roll",
+  "Name":"DiCE",
+  "Description":"A simple dice roller with python3.",
+  "Author":"Michikora",
+  "Version":"1.0.0",
+  "Language":"python",
+  "Website":"https://twitter.com/michikora",
+  "IcoPath": "icon\\dice.png",
+  "ExecuteFileName":"dice.py"
+}
