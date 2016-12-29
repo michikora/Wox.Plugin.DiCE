@@ -27,14 +27,21 @@ class OmnipotentScepter(Wox):
             return result
 
         try:
-            freq = int(diceParam[0])
-            surf = int(diceParam[1])
+            freq,surf = int(diceParam[0]),int(diceParam[1])
         except ValueError:
             result.append({
                 "Title": "Value invalid",
-                "SubTitle":"Please use Numbers.",
+                "SubTitle":"Please use integer.",
                 "IcoPath":"icon/dice.png",
             })
+            return result
+        if freq <= 0 or surf <= 0:
+            result.append({
+                "Title": "Value invalid",
+                "SubTitle":"Please use positive integer, excluding 0.",
+                "IcoPath":"icon/dice.png",
+            })
+            return result
         else:
             diceResult = []
             for num in range(0,freq):
