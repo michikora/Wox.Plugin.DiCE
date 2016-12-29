@@ -55,29 +55,30 @@ class OmnipotentScepter(Wox):
             })
             return result
 
-        if noLimit is not True freq > 30 or surf not in [2, 3, 4, 6, 8, 10, 12, 14, 16, 20, 30, 48, 60, 100, 120]:
-            result.append({
-                "Title": "You can't rolling dice more than 30, or use irregular dice.",
-                "SubTitle":"You can use commonly used dice in TRPG with d14,d16,d24,d30,d48,d60,d120. Use options -nolimit to disable limit.",
-                "IcoPath":"icon/dice.png",
-            })
-            result.append({
-                "Title":"Use options -nolimit to disable limit.",
-                "SubTitle":"If you want rolling dice more than 30, or use irregular dice.",
-                "IcoPath":"icon/dice.png",
-                "JsonRPCAction": {
-                    "method": "Wox.ChangeQueryText",
-                    "parameters": [query + ' -nolimit', False],
-                    "dontHideAfterAction": True
-                }
-            })
-            return result
-        else:
-            diceResult = []
-            for num in range(0,freq):
-                rollDice = random.randint(1,surf)
-                diceResult.append(rollDice)
-            diceResultTotal = sum(diceResult)
+        if noLimit is not True:
+            if freq > 30 or surf not in [2, 3, 4, 6, 8, 10, 12, 14, 16, 20, 30, 48, 60, 100, 120]:
+                result.append({
+                    "Title": "You can't rolling dice more than 30, or use irregular dice.",
+                    "SubTitle":"You can use commonly used dice in TRPG with d14,d16,d24,d30,d48,d60,d120. Use options -nolimit to disable limit.",
+                    "IcoPath":"icon/dice.png",
+                })
+                result.append({
+                    "Title":"Use options -nolimit to disable limit.",
+                    "SubTitle":"If you want rolling dice more than 30, or use irregular dice.",
+                    "IcoPath":"icon/dice.png",
+                    "JsonRPCAction": {
+                        "method": "Wox.ChangeQueryText",
+                        "parameters": [query + ' -nolimit',  ],
+                        "dontHideAfterAction": True
+                    }
+                })
+                return result
+
+        diceResult = []
+        for num in range(0,freq):
+            rollDice = random.randint(1,surf)
+            diceResult.append(rollDice)
+        diceResultTotal = sum(diceResult)
 
         if len(diceParam[1]) == 2:
             bonusPattern = re.search('\+|\-|\*|\/', query)
