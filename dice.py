@@ -68,7 +68,7 @@ class OmnipotentScepter(Wox):
                     "IcoPath":"icon/dice.png",
                     "JsonRPCAction": {
                         "method": "Wox.ChangeQueryText",
-                        "parameters": [query + ' -nolimit',  ],
+                        "parameters": [query + ' -nolimit', False],
                         "dontHideAfterAction": True
                     }
                 })
