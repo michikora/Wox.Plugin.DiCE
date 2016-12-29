@@ -55,7 +55,7 @@ class OmnipotentScepter(Wox):
             })
             return result
 
-        if noLimit is not True freq > 30 or surf not in [2, 3, 4, 6, 8, 10, 12, 14, 16, 20, 30, 48, 60, 100, 120]:
+        if noLimit is not True and freq > 30 or surf not in [2, 3, 4, 6, 8, 10, 12, 14, 16, 20, 30, 48, 60, 100, 120]:
             result.append({
                 "Title": "You can't rolling dice more than 30, or use irregular dice.",
                 "SubTitle":"You can use commonly used dice in TRPG with d14,d16,d24,d30,d48,d60,d120. Use options -nolimit to disable limit.",
