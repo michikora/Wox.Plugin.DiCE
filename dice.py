@@ -2,7 +2,7 @@
 import re
 import random
 import os
-from wox import Wox
+from wox import Wox, WoxAPI
 
 class OmnipotentScepter(Wox):
 
@@ -63,14 +63,14 @@ class OmnipotentScepter(Wox):
                     "IcoPath":"icon/dice.png",
                 })
                 result.append({
-                    "Title":"Use options -nolimit to disable limit.",
-                    "SubTitle":"If you want rolling dice more than 30, or use irregular dice.",
+                    "Title":"Use options ' -nolimit' to disable limit.",
+                    "SubTitle":"If you want roll dice more than 30, or use irregular dice.",
                     "IcoPath":"icon/dice.png",
-                    "JsonRPCAction": {
-                        "method": "Wox.ChangeQueryText",
-                        "parameters": [query + ' -nolimit', False],
-                        "dontHideAfterAction": True
-                    }
+                    #"JsonRPCAction": {
+                    #    "method": "addNolimit",
+                    #    "parameters": [query],
+                    #    "dontHideAfterAction": True
+                    #}
                 })
                 return result
 
@@ -90,12 +90,14 @@ class OmnipotentScepter(Wox):
             elif diceBonus is "*":
                 diceResultTotal = diceResultTotal * int(diceParam[1][1])
             elif diceBonus is "/":
-                diceResultTotal = diceResultTotal / int(diceParam[1][1])
+                diceResultTotal = round(diceResultTotal / int(diceParam[1][1]))
+            if diceResultTotal == 0:
+                diceResultTotal = 1
             diceResultTotal = str(diceResultTotal)
-            diceResult = str(diceResult) +'(' + '+' + diceParam[1][1] + ')'
+            diceResult = str(diceResult) +'(' + diceBonus + diceParam[1][1] + ')'
             result.append({
                 "Title": "Result: " + diceResultTotal,
-                "SubTitle":"Detail: " + diceResult,
+                "SubTitle":"Details: " + diceResult,
                 "IcoPath":"icon/dice.png",
             })
             return result
@@ -104,11 +106,14 @@ class OmnipotentScepter(Wox):
             diceResult = str(diceResult)
             result.append({
                 "Title": "Result: " + diceResultTotal,
-                "SubTitle":"Detail: " + diceResult,
+                "SubTitle":"Details: " + diceResult,
                 "IcoPath":"icon/dice.png",
             })
             return result
 
+    #def addNolimit(self, query):
+        #newQuery = query + " -nolimit"
+        #WoxAPI.change_query(newQuery)
 
 if __name__ == "__main__":
     OmnipotentScepter()
