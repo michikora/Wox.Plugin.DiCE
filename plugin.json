@@ -4,7 +4,7 @@
   "Name":"DiCE",
   "Description":"A simple dice roller with python3.",
   "Author":"Michikora",
-  "Version":"1.0.0",
+  "Version":"1.0.1",
   "Language":"python",
   "Website":"https://twitter.com/michikora",
   "IcoPath": "icon\\dice.png",
